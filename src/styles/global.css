@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-geist);
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 1.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.article-content {
+  & > * + * {
+    margin-top: 1.25em;
+  }
+
+  & h2 {
+    @apply mt-10 text-2xl font-semibold tracking-tight;
+  }
+
+  & h3 {
+    @apply mt-8 text-xl font-semibold tracking-tight;
+  }
+
+  & p {
+    @apply leading-relaxed;
+  }
+
+  & a {
+    @apply underline underline-offset-4;
+  }
+
+  & ul,
+  & ol {
+    @apply list-inside list-disc space-y-1 pl-4;
+  }
+
+  & pre {
+    @apply overflow-x-auto rounded-lg border border-neutral-200 p-4 text-sm dark:border-neutral-800;
+  }
+
+  & code {
+    @apply rounded bg-neutral-100 px-1.5 py-0.5 text-[0.9em] dark:bg-neutral-900;
+  }
+
+  & pre code {
+    @apply bg-transparent p-0;
+  }
+
+  & blockquote {
+    @apply border-l-2 border-neutral-300 pl-4 italic text-neutral-600 dark:border-neutral-700 dark:text-neutral-400;
+  }
+}

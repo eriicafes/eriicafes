@@ -1,0 +1,55 @@
+---
+import { getCollection, render, type CollectionEntry } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog", ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+interface Props {
+  post: CollectionEntry<"blog">;
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const dateFormatter = new Intl.DateTimeFormat("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+---
+
+<Layout title={`${post.data.title} — Eric Afes`}>
+  <main
+    class="mx-auto flex max-w-2xl flex-col gap-8 px-4 pb-24 pt-8 sm:px-6 sm:pt-16"
+  >
+    <div>
+      <a
+        href="/blog"
+        class="text-sm text-neutral-500 underline underline-offset-4 transition-colors hover:text-neutral-900 dark:text-neutral-500 dark:hover:text-neutral-100"
+      >
+        ← Blog
+      </a>
+      <h1
+        class="animate-fade-in-up mt-3 text-4xl font-bold tracking-tight sm:text-5xl"
+      >
+        {post.data.title}
+      </h1>
+      <time
+        datetime={post.data.pubDate.toISOString()}
+        class="mt-2 block text-sm text-neutral-500 dark:text-neutral-500"
+      >
+        {dateFormatter.format(post.data.pubDate)}
+      </time>
+    </div>
+
+    <div class="article-content">
+      <Content />
+    </div>
+  </main>
+</Layout>

@@ -1,13 +1,171 @@
 ---
+import ExternalLinkIcon from "../components/icons/ExternalLinkIcon.astro";
 import Layout from "../layouts/Layout.astro";
+
+const skills = [
+  "Typescript",
+  "AI",
+  "Cloudflare stack",
+  "AWS",
+  "React",
+  "API development",
+  "Sync engines",
+  "Realtime applications",
+  "Developer tools",
+];
+
+const packages = [
+  {
+    name: "Monarch ORM",
+    type: "NPM Package",
+    description: "Typesafe ORM for MongoDB.",
+    url: "https://www.npmjs.com/package/monarch-orm",
+  },
+  {
+    name: "Swift Router",
+    type: "Swift Package",
+    description: "Type-safe declarative router for SwiftUI.",
+    url: "https://github.com/eriicafes/swift-router",
+  },
+  {
+    name: "Serverstruct",
+    type: "NPM Package",
+    description: "Typesafe and modular servers with H3 and Getbox.",
+    url: "https://www.npmjs.com/package/serverstruct",
+  },
+  {
+    name: "Commandstruct",
+    type: "NPM Package",
+    description: "Typesafe and modular CLIs with Sade and Getbox.",
+    url: "https://www.npmjs.com/package/commandstruct",
+  },
+  {
+    name: "Getbox",
+    type: "NPM Package",
+    description: "Lightweight dependency injection for TypeScript.",
+    url: "https://www.npmjs.com/package/getbox",
+  },
+  {
+    name: "Got",
+    type: "Go Library",
+    description: "Fluent dependency injection in Go.",
+    url: "https://github.com/eriicafes/got",
+  },
+  {
+    name: "HTTPX",
+    type: "Go Library",
+    description: "Extended HTTP utilities for Go.",
+    url: "https://github.com/eriicafes/httpx",
+  },
+  {
+    name: "Tmpl",
+    type: "Go Library",
+    description:
+      "Simple and powerful go templates API with zero code generation.",
+    url: "https://github.com/eriicafes/tmpl",
+  },
+  {
+    name: "Swapenv",
+    type: "Go CLI Application",
+    description:
+      "A Go CLI application to allow easy switching between multiple .env files while developing locally.",
+    url: "https://github.com/eriicafes/swapenv",
+  },
+];
 ---
 
-<Layout title="Welcome to Astro.">
-  <main class="flex items-center justify-center min-h-screen">
-    <h1
-      class="font-semibold text-3xl sm:text-4xl animate-in duration-1000 slide-in-from-bottom-4 fade-in-25"
+<Layout title="Eric Afes">
+  <main
+    class="mx-auto flex max-w-2xl flex-col gap-10 px-4 pb-24 pt-8 sm:px-6 sm:pt-16"
+  >
+    <div>
+      <p class="text-sm text-neutral-500 dark:text-neutral-500">My name is</p>
+      <h1
+        class="animate-fade-in-up text-4xl font-bold tracking-tight sm:text-5xl"
+      >
+        Eric Afes
+      </h1>
+      <a
+        href="https://github.com/eriicafes"
+        target="_blank"
+        rel="noreferrer"
+        class="mt-1 inline-flex items-center gap-1.5 font-mono text-sm tracking-widest text-neutral-500 transition-colors hover:text-neutral-900 dark:text-neutral-500 dark:hover:text-neutral-100"
+      >
+        /eriicafes/
+        <ExternalLinkIcon class="size-3.5" />
+      </a>
+    </div>
+
+    <p class="text-base leading-relaxed sm:text-lg">
+      <span class="underline underline-offset-2 decoration-dotted">
+        Typescript Wizard, Gopher, Rustacean, Lover of Swift, React pilled.
+      </span>
+      <br />
+      I design systems and build products from idea to production.
+    </p>
+
+    <p
+      class="text-base leading-relaxed text-neutral-600 sm:text-lg dark:text-neutral-400"
     >
-      eriicafes
-    </h1>
+      I am passionate about maintainable code. I develop amazing libraries in my
+      free time. Checkout my{" "}
+      <a
+        href="#packages"
+        class="text-neutral-900 underline underline-offset-4 hover:no-underline dark:text-neutral-100"
+        >public packages</a
+      >. Ofc I love my agents.
+    </p>
+
+    <section>
+      <h2
+        class="mb-4 text-sm font-medium uppercase tracking-wide text-neutral-500 dark:text-neutral-500"
+      >
+        Skills
+      </h2>
+      <ul class="flex flex-wrap gap-2">
+        {
+          skills.map((skill) => (
+            <li class="rounded-full border border-neutral-200 px-3 py-1 text-sm dark:border-neutral-800">
+              {skill}
+            </li>
+          ))
+        }
+      </ul>
+    </section>
   </main>
+
+  <section id="packages" class="mx-auto max-w-4xl px-0 pb-24 sm:px-6">
+    <h2
+      class="mb-4 px-4 text-sm font-medium uppercase tracking-wide text-neutral-500 dark:text-neutral-500"
+    >
+      Packages &amp; Libraries
+    </h2>
+    <ul
+      class="grid grid-cols-1 border-l border-t border-neutral-200 sm:grid-cols-2 dark:border-neutral-800"
+    >
+      {
+        packages.map((pkg) => (
+          <li class="border-r border-b border-neutral-200 bg-neutral-100/70 dark:border-neutral-800 dark:bg-neutral-900/50">
+            <a
+              href={pkg.url}
+              target="_blank"
+              rel="noreferrer"
+              class="group flex h-full flex-col gap-1 p-4"
+            >
+              <span class="flex items-center justify-between gap-2 font-medium">
+                {pkg.name}
+                <ExternalLinkIcon class="size-4 shrink-0 text-neutral-400 transition-colors group-hover:text-neutral-900 dark:group-hover:text-neutral-100" />
+              </span>
+              <span class="text-xs text-neutral-500 dark:text-neutral-500">
+                {pkg.type}
+              </span>
+              <span class="text-sm text-neutral-600 dark:text-neutral-400">
+                {pkg.description}
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
 </Layout>

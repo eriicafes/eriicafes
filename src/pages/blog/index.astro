@@ -1,0 +1,58 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+
+const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+const dateFormatter = new Intl.DateTimeFormat("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+---
+
+<Layout title="Blog — Eric Afes">
+  <main
+    class="mx-auto flex max-w-2xl flex-col gap-10 px-4 pb-24 pt-8 sm:px-6 sm:pt-16"
+  >
+    <div>
+      <p class="text-sm text-neutral-500 dark:text-neutral-500">Writing</p>
+      <h1
+        class="animate-fade-in-up text-4xl font-bold tracking-tight sm:text-5xl"
+      >
+        Blog
+      </h1>
+    </div>
+
+    {
+      posts.length > 0 ? (
+        <ul class="flex flex-col divide-y divide-neutral-200 dark:divide-neutral-800">
+          {posts.map((post) => (
+            <li class="py-6 first:pt-0">
+              <a href={`/blog/${post.id}`} class="group flex flex-col gap-1">
+                <span class="text-lg font-medium transition-colors group-hover:text-neutral-600 dark:group-hover:text-neutral-400">
+                  {post.data.title}
+                </span>
+                <span class="text-sm text-neutral-600 dark:text-neutral-400">
+                  {post.data.description}
+                </span>
+                <time
+                  datetime={post.data.pubDate.toISOString()}
+                  class="text-xs text-neutral-500 dark:text-neutral-500"
+                >
+                  {dateFormatter.format(post.data.pubDate)}
+                </time>
+              </a>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p class="text-base text-neutral-600 dark:text-neutral-400">
+          Nothing here yet. Check back soon.
+        </p>
+      )
+    }
+  </main>
+</Layout>

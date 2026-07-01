@@ -1,0 +1,35 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="404 — Eric Afes">
+  <main
+    class="mx-auto flex items-center max-w-2xl flex-col gap-10 px-4 pb-32 pt-8 sm:px-6 sm:pt-40"
+  >
+    <div class="flex flex-col items-center">
+      <p class="text-sm text-neutral-500 dark:text-neutral-500">This page is</p>
+      <h1
+        class="animate-fade-in-up text-5xl font-bold tracking-tight sm:text-7xl"
+      >
+        404
+      </h1>
+      <a
+        href="/"
+        class="mt-1 inline-flex items-center gap-1.5 font-mono text-sm tracking-widest text-neutral-500 transition-colors hover:text-neutral-900 dark:text-neutral-500 dark:hover:text-neutral-100"
+      >
+        /not-found/
+      </a>
+    </div>
+
+    <p
+      class="text-base leading-relaxed text-neutral-600 sm:text-lg dark:text-neutral-400"
+    >
+      Take a step back to the{" "}
+      <a
+        href="/"
+        class="text-neutral-900 underline underline-offset-4 hover:no-underline dark:text-neutral-100"
+        >homepage</a
+      >. Ofc my agents wrote this page too.
+    </p>
+  </main>
+</Layout>
