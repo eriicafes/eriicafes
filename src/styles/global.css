@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
-@theme inline {
+/* @theme inline {
   --font-sans: var(--font-geist);
-}
+} */
 
 @keyframes fade-in-up {
   from {
