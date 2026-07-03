@@ -77,7 +77,7 @@ var GetOffice = got.Using(func(c *got.Container) *Office {
 
 ## Constructors that can fail
 
-Constructors that open files or dial databases often need to return an error alongside the value. `got.Using2` supports that two-return-value shape directly, so an error-returning constructor is still just a variable:
+Constructors can fail by returning an error alongside the value. `got.Using2` supports that two-return-value shape directly, so an error-returning constructor is still just a variable:
 
 ```go
 var GetBadOffice = got.Using2(func(c *got.Container) (*Office, error) {
@@ -105,7 +105,7 @@ func main() {
 }
 ```
 
-`got.Mock` takes the replacement instance directly — a constructor isn't required here since `MockPrinter` has nothing of its own to resolve. A constructor only earns its keep when the mock itself needs something out of the container:
+`got.Mock` takes the replacement instance directly. A constructor can be used when the mock itself needs something from the container:
 
 ```go
 var GetMockPrinter = got.Using(func(c *got.Container) Printer {
